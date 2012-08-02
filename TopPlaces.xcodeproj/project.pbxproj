@@ -84,9 +84,9 @@
 			isa = PBXGroup;
 			children = (
 				18E351BD15CAF66B0083228A /* MainStoryboard_iPhone.storyboard */,
+				18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */,
 				18E351CF15CAFFBB0083228A /* TopPlacesViewController.h */,
 				18E351D015CAFFBB0083228A /* TopPlacesViewController.m */,
-				18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */,
 				18E351CB15CAFB940083228A /* FlickrAPIKey.h */,
 				18E351CC15CAFB940083228A /* FlickrFetcher.h */,
 				18E351CD15CAFB940083228A /* FlickrFetcher.m */,
