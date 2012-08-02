@@ -20,6 +20,48 @@
 
 #define PLACE_NAME_KEY @"_content"
 
+/*
+ Helper method to return the places in alphabetical order in an array
+ */
+- (NSArray *)loadPlacesInOrder
+{
+	NSArray *tmp = [FlickrFetcher topPlaces];
+	NSArray *sortedArray = [tmp sortedArrayUsingComparator: ^(id obj1, id obj2) {
+		NSString *city1 = [[[obj1 objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
+		NSString *city2 = [[[obj2 objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
+		return [city1 compare:city2];
+	}];
+	return sortedArray;
+}
+
+
+- (IBAction)refresh:(id)sender {
+	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[spinner startAnimating];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+	
+	dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+	dispatch_async(downloadQueue, ^{
+		NSArray *tmp = [self loadPlacesInOrder];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.navigationItem.rightBarButtonItem = sender;
+			self.topPlaces = tmp;
+		});
+	});
+	dispatch_release(downloadQueue);
+	NSLog(@"Refresh the top places list.");
+}
+
+
+
+
+
+
+
+
+
+
+#pragma mark - View Life Cycle
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,14 +75,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	NSArray *tmp = [FlickrFetcher topPlaces];
-	
-	// Sort the array by alphabetical order
-	self.topPlaces = [tmp sortedArrayUsingComparator: ^(id obj1, id obj2) {
-		NSString *city1 = [[[obj1 objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
-		NSString *city2 = [[[obj2 objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
-		return [city1 compare:city2];		
-	}];
+	self.topPlaces = [self loadPlacesInOrder];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -60,6 +95,8 @@
 {
     return YES;
 }
+
+
 
 #pragma mark - Table view data source
 

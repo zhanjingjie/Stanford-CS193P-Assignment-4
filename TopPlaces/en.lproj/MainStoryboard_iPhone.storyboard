@@ -46,7 +46,13 @@
                             <outlet property="delegate" destination="h7A-kw-BEw" id="1Pb-sb-HdC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Top Places" id="7iI-th-lKP"/>
+                    <navigationItem key="navigationItem" title="Top Places" id="7iI-th-lKP">
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="l2c-fG-cMZ">
+                            <connections>
+                                <action selector="refresh:" destination="h7A-kw-BEw" id="Hut-Rp-FeN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1458" y="84"/>
@@ -142,6 +148,9 @@
     <classes>
         <class className="TopPlacesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
