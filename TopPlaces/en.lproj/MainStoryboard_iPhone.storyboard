@@ -87,12 +87,12 @@
             </objects>
             <point key="canvasLocation" x="1458" y="691"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller-->
         <scene sceneID="uJW-la-wDg">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lnu-2T-Lqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="tCs-eE-m5c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ewt-Nh-K35"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="ewt-Nh-K35"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NVN-8c-jtf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -125,12 +125,12 @@
             </objects>
             <point key="canvasLocation" x="452" y="84"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller-->
         <scene sceneID="7W5-GQ-iFa">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsr-Re-NKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="mRN-GZ-M8l" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gb0-6P-08n"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="gb0-6P-08n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4zG-ad-ZKU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
