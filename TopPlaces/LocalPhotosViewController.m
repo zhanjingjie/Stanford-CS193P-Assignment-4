@@ -28,19 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -74,19 +66,13 @@
 	
     // Configure the cell...
 	NSDictionary *photoDescription = [self.allPhotos objectAtIndex:indexPath.row];
-	NSString *title = [photoDescription objectForKey:PHOTO_TITLE];
-	NSString *description = [photoDescription valueForKeyPath:@"description._content"];
 	
-	if (!title && !description) {
-		cell.textLabel.text = @"Unknown";
-		cell.detailTextLabel.text = @"Unknown";
-	} else if (!title) {
-		cell.textLabel.text = description;
-		cell.detailTextLabel.text = description;
-	} else {
-		cell.textLabel.text = title;
-		cell.detailTextLabel.text = description;
-	}
+	// Get the content for the cell's title and subtitle
+	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString *description = [[photoDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	
+	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
+	cell.detailTextLabel.text = description;
 	
     return cell;
 }
@@ -97,13 +83,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end
