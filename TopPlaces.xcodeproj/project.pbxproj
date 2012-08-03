@@ -17,6 +17,7 @@
 		18E351C215CAF66B0083228A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */; };
 		18E351CE15CAFB940083228A /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E351CD15CAFB940083228A /* FlickrFetcher.m */; };
 		18E351D115CAFFBB0083228A /* TopPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E351D015CAFFBB0083228A /* TopPlacesViewController.m */; };
+		18E351E815CB7DA40083228A /* LocalPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E351E715CB7DA40083228A /* LocalPhotosViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		18E351CD15CAFB940083228A /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 		18E351CF15CAFFBB0083228A /* TopPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlacesViewController.h; sourceTree = "<group>"; };
 		18E351D015CAFFBB0083228A /* TopPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlacesViewController.m; sourceTree = "<group>"; };
+		18E351E615CB7DA40083228A /* LocalPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPhotosViewController.h; sourceTree = "<group>"; };
+		18E351E715CB7DA40083228A /* LocalPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPhotosViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 				18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */,
 				18E351CF15CAFFBB0083228A /* TopPlacesViewController.h */,
 				18E351D015CAFFBB0083228A /* TopPlacesViewController.m */,
+				18E351E615CB7DA40083228A /* LocalPhotosViewController.h */,
+				18E351E715CB7DA40083228A /* LocalPhotosViewController.m */,
 				18E351CB15CAFB940083228A /* FlickrAPIKey.h */,
 				18E351CC15CAFB940083228A /* FlickrFetcher.h */,
 				18E351CD15CAFB940083228A /* FlickrFetcher.m */,
@@ -177,6 +182,7 @@
 				18E351BC15CAF66B0083228A /* TopPlacesAppDelegate.m in Sources */,
 				18E351CE15CAFB940083228A /* FlickrFetcher.m in Sources */,
 				18E351D115CAFFBB0083228A /* TopPlacesViewController.m in Sources */,
+				18E351E815CB7DA40083228A /* LocalPhotosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

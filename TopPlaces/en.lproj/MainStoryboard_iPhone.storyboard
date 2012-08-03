@@ -15,11 +15,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Top Places Pool" textLabel="bu2-FU-CAS" detailTextLabel="tpr-4V-hjW" style="IBUITableViewCellStyleSubtitle" id="KrU-0q-gMO">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Top Places Pool" textLabel="bu2-FU-CAS" detailTextLabel="tpr-4V-hjW" style="IBUITableViewCellStyleSubtitle" id="KrU-0q-gMO">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bu2-FU-CAS">
@@ -55,7 +55,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1458" y="84"/>
+            <point key="canvasLocation" x="1222" y="-776"/>
         </scene>
         <!--Table View Controller - Recent-->
         <scene sceneID="22k-TI-g4q">
@@ -85,7 +85,7 @@
                     <navigationItem key="navigationItem" title="Recent" id="cIh-jG-SB3"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1458" y="691"/>
+            <point key="canvasLocation" x="1222" y="-169"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uJW-la-wDg">
@@ -104,7 +104,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="932" y="84"/>
+            <point key="canvasLocation" x="696" y="-776"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GlJ-lI-vXQ">
@@ -123,7 +123,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="452" y="84"/>
+            <point key="canvasLocation" x="216" y="-776"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7W5-GQ-iFa">
@@ -142,7 +142,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="932" y="691"/>
+            <point key="canvasLocation" x="696" y="-169"/>
         </scene>
     </scenes>
     <classes>
