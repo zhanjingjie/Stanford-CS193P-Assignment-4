@@ -7,6 +7,7 @@
 //
 
 #import "LocalPhotosViewController.h"
+#import "FlickrFetcher.h"
 
 @interface LocalPhotosViewController ()
 
@@ -57,6 +58,18 @@
 }
 
 #define PHOTO_TITLE @"title"
+#define THUMBNAIL_WIDTH 50
+#define THUMBNAIL_HEIGHT 50
+
+
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -70,11 +83,16 @@
 	// Get the content for the cell's title and subtitle
 	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	NSString *description = [[photoDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatThumbnail];
 	
 	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
 	cell.detailTextLabel.text = description;
 	
-    return cell;
+	// Can put this in a different thread
+	
+	UIImage *raw = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
+	cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
+	return cell;
 }
 
 
