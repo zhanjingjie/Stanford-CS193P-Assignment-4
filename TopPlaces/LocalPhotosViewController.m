@@ -88,10 +88,25 @@
 	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
 	cell.detailTextLabel.text = description;
 	
-	// Can put this in a different thread
-	
+	// Now the code is lagging, when loaded and scrolled
 	UIImage *raw = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
 	cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
+	
+	
+	// The behavior is strange: images only show after you scroll the first time, but no lagging now
+	// Will worry about performance later
+	/*
+	dispatch_queue_t downloadImages = dispatch_queue_create("download images", NULL);
+	dispatch_async(downloadImages, ^{
+		NSData *data = [NSData dataWithContentsOfURL:photoURL];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			UIImage *raw = [UIImage imageWithData:data];
+			cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
+		});
+	});
+	dispatch_release(downloadImages);
+	 */
+	
 	return cell;
 }
 
