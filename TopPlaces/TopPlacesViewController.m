@@ -65,7 +65,7 @@
 		
 		NSArray *photos = [FlickrFetcher photosInPlace:place maxResults:MAX_PHOTO_NUMBER]; // This line might take the most time, make it in a separate thread
 		// Set the destination view controller's title and the allPhotos property.
-		((LocalPhotosViewController *) segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
+		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
 		((LocalPhotosViewController *) segue.destinationViewController).allPhotos = photos;
 	}
 }

@@ -8,6 +8,7 @@
 
 #import "LocalPhotosViewController.h"
 #import "FlickrFetcher.h"
+#import "PhotoViewController.h"
 
 @interface LocalPhotosViewController ()
 
@@ -26,19 +27,27 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"Show One Photo"]) {
+		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
+		
+		// Set the destination view controller's title as the image's title
+		((PhotoViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+
+		// Pass the URL to the destination view controller
+		// The destination view controller should be a generic image displaying controller, display the image from the URL
+		NSURL *photoURL = [FlickrFetcher urlForPhoto:photoInfo format:FlickrPhotoFormatLarge];
+		((PhotoViewController *)segue.destinationViewController).photoURL = photoURL;
+	}
 }
 
 #pragma mark - Table view data source
@@ -89,6 +98,7 @@
 	cell.detailTextLabel.text = description;
 	
 	// Now the code is lagging, when loaded and scrolled
+	// See Apple LazyTableImage sample project for more info
 	UIImage *raw = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
 	cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
 	
@@ -116,6 +126,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end
