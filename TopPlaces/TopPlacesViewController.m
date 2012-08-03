@@ -55,7 +55,18 @@
 }
 
 
-
+// The better part of using this method is: you can customize the new table view controller in the interface builder instead of building from code.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"Show Photo Descriptions"]) {
+		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
+		NSArray *photos = [FlickrFetcher photosInPlace:place maxResults:MAX_PHOTO_NUMBER];
+		// Set the destination view controller's title and the allPhotos property.
+		((LocalPhotosViewController *) segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
+		((LocalPhotosViewController *) segue.destinationViewController).allPhotos = photos;
+	}
+}
 
 
 
@@ -76,22 +87,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
 	// Show those top places when load
 	self.topPlaces = [self loadPlacesInOrder];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -143,15 +145,10 @@
 
 #pragma mark - Table view delegate
 
+// Should prepare the data for the next controller in prepareForSegue
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
-    NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
-	NSArray *photos = [FlickrFetcher photosInPlace:place maxResults:MAX_PHOTO_NUMBER];
-	
-	LocalPhotosViewController *photosViewController = [[LocalPhotosViewController alloc] initWithStyle:UITableViewStylePlain];
-	photosViewController.allPhotos = photos;
-	[[self navigationController] pushViewController:photosViewController animated:YES];
 }
 
 
