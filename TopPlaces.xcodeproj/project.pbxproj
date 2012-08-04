@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18B9440915CC959F001878FA /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9440815CC959F001878FA /* PhotoViewController.m */; };
+		18B9440F15CCA726001878FA /* RecentPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9440E15CCA726001878FA /* RecentPlacesViewController.m */; };
 		18E351AC15CAF66B0083228A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E351AB15CAF66B0083228A /* UIKit.framework */; };
 		18E351AE15CAF66B0083228A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E351AD15CAF66B0083228A /* Foundation.framework */; };
 		18E351B015CAF66B0083228A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E351AF15CAF66B0083228A /* CoreGraphics.framework */; };
@@ -24,6 +25,8 @@
 /* Begin PBXFileReference section */
 		18B9440715CC959F001878FA /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		18B9440815CC959F001878FA /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		18B9440D15CCA726001878FA /* RecentPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPlacesViewController.h; sourceTree = "<group>"; };
+		18B9440E15CCA726001878FA /* RecentPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPlacesViewController.m; sourceTree = "<group>"; };
 		18E351A715CAF66B0083228A /* TopPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E351AB15CAF66B0083228A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18E351AD15CAF66B0083228A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,6 +62,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B9440B15CCA6EC001878FA /* LeftBar */ = {
+			isa = PBXGroup;
+			children = (
+				18E351CF15CAFFBB0083228A /* TopPlacesViewController.h */,
+				18E351D015CAFFBB0083228A /* TopPlacesViewController.m */,
+				18E351E615CB7DA40083228A /* LocalPhotosViewController.h */,
+				18E351E715CB7DA40083228A /* LocalPhotosViewController.m */,
+				18B9440715CC959F001878FA /* PhotoViewController.h */,
+				18B9440815CC959F001878FA /* PhotoViewController.m */,
+			);
+			name = LeftBar;
+			sourceTree = "<group>";
+		};
+		18B9440C15CCA701001878FA /* RightBar */ = {
+			isa = PBXGroup;
+			children = (
+				18B9440D15CCA726001878FA /* RecentPlacesViewController.h */,
+				18B9440E15CCA726001878FA /* RecentPlacesViewController.m */,
+			);
+			name = RightBar;
+			sourceTree = "<group>";
+		};
 		18E3519C15CAF66B0083228A = {
 			isa = PBXGroup;
 			children = (
@@ -89,17 +114,10 @@
 		18E351B115CAF66B0083228A /* TopPlaces */ = {
 			isa = PBXGroup;
 			children = (
+				18B9440C15CCA701001878FA /* RightBar */,
+				18B9440B15CCA6EC001878FA /* LeftBar */,
 				18E351BD15CAF66B0083228A /* MainStoryboard_iPhone.storyboard */,
 				18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */,
-				18E351CF15CAFFBB0083228A /* TopPlacesViewController.h */,
-				18E351D015CAFFBB0083228A /* TopPlacesViewController.m */,
-				18E351E615CB7DA40083228A /* LocalPhotosViewController.h */,
-				18E351E715CB7DA40083228A /* LocalPhotosViewController.m */,
-				18B9440715CC959F001878FA /* PhotoViewController.h */,
-				18B9440815CC959F001878FA /* PhotoViewController.m */,
-				18E351CB15CAFB940083228A /* FlickrAPIKey.h */,
-				18E351CC15CAFB940083228A /* FlickrFetcher.h */,
-				18E351CD15CAFB940083228A /* FlickrFetcher.m */,
 				18E351B215CAF66B0083228A /* Supporting Files */,
 			);
 			path = TopPlaces;
@@ -108,6 +126,9 @@
 		18E351B215CAF66B0083228A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18E351CB15CAFB940083228A /* FlickrAPIKey.h */,
+				18E351CC15CAFB940083228A /* FlickrFetcher.h */,
+				18E351CD15CAFB940083228A /* FlickrFetcher.m */,
 				18E351BA15CAF66B0083228A /* TopPlacesAppDelegate.h */,
 				18E351BB15CAF66B0083228A /* TopPlacesAppDelegate.m */,
 				18E351B315CAF66B0083228A /* TopPlaces-Info.plist */,
@@ -189,6 +210,7 @@
 				18E351D115CAFFBB0083228A /* TopPlacesViewController.m in Sources */,
 				18E351E815CB7DA40083228A /* LocalPhotosViewController.m in Sources */,
 				18B9440915CC959F001878FA /* PhotoViewController.m in Sources */,
+				18B9440F15CCA726001878FA /* RecentPlacesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

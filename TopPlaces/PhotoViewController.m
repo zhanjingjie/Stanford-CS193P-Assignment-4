@@ -29,7 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:self.photoURL]]];
+	[self.imageScrollView addSubview:imageView];
+	
+	// After modify the content size, the image can be scrolled
+	// Don't need the scroll bar
+	self.imageScrollView.contentSize = imageView.bounds.size;
 }
 
 - (void)viewDidUnload

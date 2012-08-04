@@ -134,11 +134,11 @@
             </objects>
             <point key="canvasLocation" x="2193" y="-776"/>
         </scene>
-        <!--Table View Controller - Recent-->
+        <!--Recent Places View Controller - Recent-->
         <scene sceneID="22k-TI-g4q">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbp-yl-47I" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="xga-e3-VhM" sceneMemberID="viewController">
+                <tableViewController id="xga-e3-VhM" customClass="RecentPlacesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6BU-WP-6se">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,6 +231,9 @@
             <relationships>
                 <relationship kind="outlet" name="imageScrollView" candidateClass="UIScrollView"/>
             </relationships>
+        </class>
+        <class className="RecentPlacesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentPlacesViewController.h"/>
         </class>
         <class className="TopPlacesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>
