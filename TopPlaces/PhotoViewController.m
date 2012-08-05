@@ -25,13 +25,13 @@
 {
     [super viewDidLoad];
 	
-	// Set this class as the delegate of the scroll view
-	self.imageScrollView.delegate = self;
-	
 	// Load the image and set it as the image
 	// Strange behavior when dealing with content size
 	self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.photoURL]];
-
+	
+	// Set this class as the delegate of the scroll view
+	self.imageScrollView.delegate = self;
+	
 	self.imageScrollView.contentSize = self.imageView.image.size;
 
 	self.imageView.frame = CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height);
