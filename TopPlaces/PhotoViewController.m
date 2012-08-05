@@ -8,40 +8,40 @@
 
 #import "PhotoViewController.h"
 
-@interface PhotoViewController ()
+@interface PhotoViewController () <UIScrollViewDelegate>
 // Make the scroll view an outlet of the controller
-@property IBOutlet UIScrollView *imageScrollView;
+@property (weak, nonatomic) IBOutlet  UIScrollView *imageScrollView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end
 
 @implementation PhotoViewController
 
 @synthesize photoURL = _photoURL;
+@synthesize imageScrollView;
+@synthesize imageView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:self.photoURL]]];
-	[self.imageScrollView addSubview:imageView];
+	// Set this class as the delegate of the scroll view
+	self.imageScrollView.delegate = self;
 	
-	// After modify the content size, the image can be scrolled
-	// Don't need the scroll bar
-	self.imageScrollView.contentSize = imageView.bounds.size;
+	// Load the image and set it as the image
+	// Strange behavior when dealing with content size
+	self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.photoURL]];
+
+	self.imageScrollView.contentSize = self.imageView.image.size;
+
+	self.imageView.frame = CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height);
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+	[self setImageScrollView:nil];
+	[self setImageView:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -49,4 +49,23 @@
     return YES;
 }
 
+
+#pragma mark - UIScrollViewDelegate method
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+	return self.imageView;
+}
+
+
+
 @end
+
+
+
+
+
+
+
+
+
