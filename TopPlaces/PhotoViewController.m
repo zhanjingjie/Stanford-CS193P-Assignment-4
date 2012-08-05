@@ -31,6 +31,7 @@
 	
 	// Set this class as the delegate of the scroll view
 	self.imageScrollView.delegate = self;
+	self.imageScrollView.backgroundColor = [UIColor blackColor];
 	
 	self.imageScrollView.contentSize = self.imageView.image.size;
 
