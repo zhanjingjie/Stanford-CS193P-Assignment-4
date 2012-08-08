@@ -18,6 +18,25 @@
 
 @synthesize allPhotos = _allPhotos;
 
+/*
+- (IBAction)refresh:(id)sender {
+	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[spinner startAnimating];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+	
+	dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+	dispatch_async(downloadQueue, ^{
+		NSArray *tmp = [self loadPlacesInOrder];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.navigationItem.rightBarButtonItem = sender;
+			self.topPlaces = tmp;
+		});
+	});
+	dispatch_release(downloadQueue);
+	NSLog(@"Refresh the top places list.");
+}
+*/
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -92,16 +111,17 @@
 	// Get the content for the cell's title and subtitle
 	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	NSString *description = [[photoDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatThumbnail];
+	//NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatThumbnail];
 	
 	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
 	cell.detailTextLabel.text = description;
 	
 	// Now the code is lagging, when loaded and scrolled
 	// See Apple LazyTableImage sample project for more info
+	/*
 	UIImage *raw = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
 	cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
-	
+	*/
 	
 	// The behavior is strange: images only show after you scroll the first time, but no lagging now
 	// Will worry about performance later

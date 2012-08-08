@@ -37,22 +37,6 @@
 }
 
 
-- (IBAction)refresh:(id)sender {
-	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[spinner startAnimating];
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
-	
-	dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
-	dispatch_async(downloadQueue, ^{
-		NSArray *tmp = [self loadPlacesInOrder];
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.navigationItem.rightBarButtonItem = sender;
-			self.topPlaces = tmp;
-		});
-	});
-	dispatch_release(downloadQueue);
-	NSLog(@"Refresh the top places list.");
-}
 
 
 // The better part of using this method is: you can customize the new table view controller in the interface builder instead of building from code.
@@ -63,6 +47,7 @@
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 		NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
 		
+		// Maybe I should pass the place dictionary to the next controller
 		NSArray *photos = [FlickrFetcher photosInPlace:place maxResults:MAX_PHOTO_NUMBER]; // This line might take the most time, make it in a separate thread
 		// Set the destination view controller's title and the allPhotos property.
 		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
