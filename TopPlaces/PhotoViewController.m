@@ -19,6 +19,28 @@
 @synthesize imageScrollView;
 @synthesize imageView;
 
+// A helper method to set the contentSize when first appear on screen and when rotation occurs
+- (void)resetContentSize
+{
+	CGSize bounds = self.view.bounds.size;
+	CGSize imageSize = self.imageView.image.size;
+	CGSize fitSize;
+	
+	// eg. if widthRatio > heightRatio, then use the bounds.width as the width of the image and imageSize/widthRatio as the height
+	CGFloat widthRatio = imageSize.width / bounds.width;
+	CGFloat heightRatio = imageSize.height / bounds.height;
+	
+	if (widthRatio >= heightRatio) {
+		fitSize.width = bounds.width;
+		fitSize.height = imageSize.height / widthRatio;
+	} else {
+		fitSize.width = imageSize.width / heightRatio;
+		fitSize.height = bounds.height;
+	}
+	
+	self.imageScrollView.contentSize = fitSize;
+}
+
 
 - (void)viewDidLoad
 {
@@ -31,30 +53,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	/*
-	UIImage *tmp = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.photoURL]];
-	
-	CGRect bounds = self.view.bounds;
-	CGSize sizeOfImage = tmp.size;
-	CGFloat widthRatio = sizeOfImage.width / bounds.size.width;
-	CGFloat heightRatio = sizeOfImage.height / bounds.size.height;
-	CGSize fitImageSize;
-	
-	if (widthRatio > heightRatio) {
-		fitImageSize.width = bounds.size.width;
-		fitImageSize.height = sizeOfImage.height / widthRatio;
-	} else {
-		fitImageSize.width = sizeOfImage.width / heightRatio;
-		fitImageSize.height = bounds.size.height;
-	}
-	
-	UIImage *scaledImage = [self imageWithImage:tmp convertToSize:fitImageSize];
-	self.imageView.image = scaledImage;
-	
-	self.imageScrollView.contentSize = fitImageSize;
-	//self.imageView.frame = CGRectMake(0, 0, fitImageSize.width, fitImageSize.height);
-	 */
-
+	[super viewWillAppear:YES];
+	[self resetContentSize];
 }
 
 - (void)viewDidUnload
@@ -67,6 +67,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+// Will handle the new contentSize after rotation
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	[self resetContentSize];
 }
 
 
