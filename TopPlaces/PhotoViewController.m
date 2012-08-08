@@ -19,6 +19,8 @@
 @synthesize imageScrollView;
 @synthesize imageView;
 
+
+
 // A helper method to set the contentSize when first appear on screen and when rotation occurs
 - (void)resetContentSize
 {
@@ -37,7 +39,7 @@
 		fitSize.width = imageSize.width / heightRatio;
 		fitSize.height = bounds.height;
 	}
-	
+		
 	self.imageScrollView.contentSize = fitSize;
 }
 
@@ -63,6 +65,8 @@
 	[self setImageScrollView:nil];
 	[self setImageView:nil];
 }
+
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
