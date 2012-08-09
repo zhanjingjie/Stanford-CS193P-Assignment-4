@@ -7,6 +7,8 @@
 //
 
 #import "RecentPlacesViewController.h"
+#import "PhotoViewController.h"
+#import "FlickrFetcher.h"
 
 @interface RecentPlacesViewController ()
 
@@ -35,6 +37,23 @@
 		if (self.tableView.window) [self.tableView reloadData];
 	}
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"Show One Photo"]) {
+		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		NSDictionary *photoInfo = [self.recentPhotos objectAtIndex:indexPath.row];
+		
+		// Set the destination view controller's title as the image's title
+		((PhotoViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+		
+		// Pass the URL to the destination view controller
+		// The destination view controller should be a generic image displaying controller, display the image from the URL
+		NSURL *photoURL = [FlickrFetcher urlForPhoto:photoInfo format:FlickrPhotoFormatLarge];
+		((PhotoViewController *)segue.destinationViewController).photoURL = photoURL;
+	}
+}
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -77,7 +96,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end
