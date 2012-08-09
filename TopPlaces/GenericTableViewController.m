@@ -1,39 +1,41 @@
 //
 //  RecentPlacesViewController.m
+//  This class will be the parent of all similar classes
 //  TopPlaces
 //
 //  Created by Zhan Jingjie on 8/3/12.
 //  Copyright (c) 2012 Zhan Jingjie. All rights reserved.
 //
 
-#import "RecentPlacesViewController.h"
-#import "PhotoViewController.h"
+#import "GenericTableViewController.h"
+#import "PhotoDisplayViewController.h"
 #import "FlickrFetcher.h"
+#import "Contants.h"
 
-@interface RecentPlacesViewController ()
 
+
+@interface GenericTableViewController ()
 @end
 
-@implementation RecentPlacesViewController
 
-@synthesize recentPhotos = _recentPhotos;
 
-#define RECENT_PHOTOS @"recent photos"
-#define PHOTO_TITLE @"title"
+@implementation GenericTableViewController
 
-// Both viewDidLoad and viewWillAppear get called when switch between tab bars
+@synthesize objects = _objects;
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
 
-// All other methods can be reused except this one
+
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:NO];
 	NSArray *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:RECENT_PHOTOS];
-	if (_recentPhotos != tmp) {
-		self.recentPhotos = tmp;
+	if (_objects != tmp) {
+		self.objects = tmp;
 		// Maybe later can only reload or insert delete part of the date instead of reload all
 		if (self.tableView.window) [self.tableView reloadData];
 	}
@@ -43,7 +45,7 @@
 {
 	if ([segue.identifier isEqualToString:@"Show One Photo"]) {
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-		NSDictionary *photoInfo = [self.recentPhotos objectAtIndex:indexPath.row];
+		NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
 		
 		// Set the destination view controller's title as the image's title
 		((PhotoViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
@@ -68,7 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.recentPhotos count];
+    return [self.objects count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,7 +80,7 @@
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 	
     // Configure the cell...
-	NSDictionary *photoDescription = [self.recentPhotos objectAtIndex:indexPath.row];
+	NSDictionary *photoDescription = [self.objects objectAtIndex:indexPath.row];
 	
 	// Get the content for the cell's title and subtitle
 	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

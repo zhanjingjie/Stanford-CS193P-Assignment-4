@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecentPlacesViewController : UITableViewController
-@property (nonatomic, strong) NSArray *recentPhotos;
+@interface GenericTableViewController : UITableViewController
+@property (nonatomic, strong) NSArray *objects;
 @end

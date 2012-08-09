@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Zhan Jingjie. All rights reserved.
 //
 
-#import "PhotoViewController.h"
+#import "PhotoDisplayViewController.h"
 
 @interface PhotoViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet  UIScrollView *imageScrollView;

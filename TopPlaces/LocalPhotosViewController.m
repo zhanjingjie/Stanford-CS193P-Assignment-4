@@ -21,6 +21,8 @@
 
 #define MAX_PHOTO_NUMBER 50
 
+
+
 - (IBAction)refresh:(id)sender {
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	[spinner startAnimating];
@@ -49,7 +51,7 @@
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
+	//[super viewDidLoad];
 	self.allPhotos = [FlickrFetcher photosInPlace:self.thePlace maxResults:MAX_PHOTO_NUMBER];
 }
 
@@ -183,7 +185,6 @@
 		}
 		[tmp addObject:photoInfo];
 	}
-	NSLog(@"Print array count: %u", [tmp count]);
 	[defaults setObject:tmp forKey:RECENT_PHOTOS];
 	[defaults synchronize];
 	
