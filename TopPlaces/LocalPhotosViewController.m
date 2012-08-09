@@ -147,6 +147,7 @@
 #define PHOTO_ID @"id"
 #define MAX_RECENTS 20
 
+// Tested
 // Return true if the photo already exist (a duplicate)
 - (BOOL)checkIfPhoto:(NSDictionary *)photoInfo
 	  existInRecents:(NSArray *)photoArray
@@ -160,6 +161,7 @@
 	return NO;
 }
 
+// Tested
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -167,15 +169,24 @@
 	// Get the dictionary
 	NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSMutableArray *tmp = [[defaults objectForKey:RECENT_PHOTOS] mutableCopy];
+	
+	NSMutableArray *tmp;
+	if (![defaults objectForKey:RECENT_PHOTOS]) {
+		tmp = [NSMutableArray array];
+	} else {
+		tmp = [[defaults objectForKey:RECENT_PHOTOS] mutableCopy];
+	}
+	
 	if (![self checkIfPhoto:photoInfo existInRecents:tmp]) {
 		if ([tmp count] == MAX_RECENTS) {
 			[tmp removeObjectAtIndex:0];
 		}
 		[tmp addObject:photoInfo];
 	}
+	NSLog(@"Print array count: %u", [tmp count]);
 	[defaults setObject:tmp forKey:RECENT_PHOTOS];
-	[defaults synchronize];gi
+	[defaults synchronize];
+	
 }
 
 @end
