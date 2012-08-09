@@ -11,14 +11,16 @@
 #import "PhotoViewController.h"
 
 @interface LocalPhotosViewController ()
-
+@property (nonatomic, strong) NSArray *allPhotos;
 @end
 
 @implementation LocalPhotosViewController
 
+@synthesize thePlace = _thePlace;
 @synthesize allPhotos = _allPhotos;
 
-/*
+#define MAX_PHOTO_NUMBER 50
+
 - (IBAction)refresh:(id)sender {
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	[spinner startAnimating];
@@ -26,16 +28,15 @@
 	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
 	dispatch_async(downloadQueue, ^{
-		NSArray *tmp = [self loadPlacesInOrder];
+		NSArray *tmp = [FlickrFetcher photosInPlace:self.thePlace maxResults:MAX_PHOTO_NUMBER];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.navigationItem.rightBarButtonItem = sender;
-			self.topPlaces = tmp;
+			self.allPhotos = tmp;
 		});
 	});
 	dispatch_release(downloadQueue);
-	NSLog(@"Refresh the top places list.");
+	NSLog(@"Refresh the top photos list.");
 }
-*/
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,6 +45,12 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	self.allPhotos = [FlickrFetcher photosInPlace:self.thePlace maxResults:MAX_PHOTO_NUMBER];
 }
 
 

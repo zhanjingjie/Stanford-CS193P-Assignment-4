@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LocalPhotosViewController : UITableViewController
-@property (nonatomic, strong) NSArray *allPhotos;
+@property (nonatomic, strong) NSDictionary *thePlace;
 @end

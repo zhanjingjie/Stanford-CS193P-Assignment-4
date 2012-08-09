@@ -20,7 +20,6 @@
 
 
 #define PLACE_NAME_KEY @"_content"
-#define MAX_PHOTO_NUMBER 50
 
 /*
  Helper method to return the places in alphabetical order in an array
@@ -47,11 +46,9 @@
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 		NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
 		
-		// Maybe I should pass the place dictionary to the next controller
-		NSArray *photos = [FlickrFetcher photosInPlace:place maxResults:MAX_PHOTO_NUMBER]; // This line might take the most time, make it in a separate thread
 		// Set the destination view controller's title and the allPhotos property.
 		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
-		((LocalPhotosViewController *) segue.destinationViewController).allPhotos = photos;
+		((LocalPhotosViewController *) segue.destinationViewController).thePlace = place;
 	}
 }
 
