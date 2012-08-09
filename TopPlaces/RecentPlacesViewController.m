@@ -27,6 +27,7 @@
     [super viewDidLoad];
 }
 
+// All other methods can be reused except this one
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:NO];

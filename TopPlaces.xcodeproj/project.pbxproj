@@ -62,28 +62,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18B9440B15CCA6EC001878FA /* LeftBar */ = {
-			isa = PBXGroup;
-			children = (
-				18E351CF15CAFFBB0083228A /* TopPlacesViewController.h */,
-				18E351D015CAFFBB0083228A /* TopPlacesViewController.m */,
-				18E351E615CB7DA40083228A /* LocalPhotosViewController.h */,
-				18E351E715CB7DA40083228A /* LocalPhotosViewController.m */,
-				18B9440715CC959F001878FA /* PhotoViewController.h */,
-				18B9440815CC959F001878FA /* PhotoViewController.m */,
-			);
-			name = LeftBar;
-			sourceTree = "<group>";
-		};
-		18B9440C15CCA701001878FA /* RightBar */ = {
-			isa = PBXGroup;
-			children = (
-				18B9440D15CCA726001878FA /* RecentPlacesViewController.h */,
-				18B9440E15CCA726001878FA /* RecentPlacesViewController.m */,
-			);
-			name = RightBar;
-			sourceTree = "<group>";
-		};
 		18E3519C15CAF66B0083228A = {
 			isa = PBXGroup;
 			children = (
@@ -114,8 +92,14 @@
 		18E351B115CAF66B0083228A /* TopPlaces */ = {
 			isa = PBXGroup;
 			children = (
-				18B9440C15CCA701001878FA /* RightBar */,
-				18B9440B15CCA6EC001878FA /* LeftBar */,
+				18E351CF15CAFFBB0083228A /* TopPlacesViewController.h */,
+				18E351D015CAFFBB0083228A /* TopPlacesViewController.m */,
+				18E351E615CB7DA40083228A /* LocalPhotosViewController.h */,
+				18E351E715CB7DA40083228A /* LocalPhotosViewController.m */,
+				18B9440715CC959F001878FA /* PhotoViewController.h */,
+				18B9440815CC959F001878FA /* PhotoViewController.m */,
+				18B9440D15CCA726001878FA /* RecentPlacesViewController.h */,
+				18B9440E15CCA726001878FA /* RecentPlacesViewController.m */,
 				18E351BD15CAF66B0083228A /* MainStoryboard_iPhone.storyboard */,
 				18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */,
 				18E351B215CAF66B0083228A /* Supporting Files */,

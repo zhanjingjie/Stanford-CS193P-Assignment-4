@@ -129,7 +129,6 @@
 
 #pragma mark - Table view delegate
 
-// Should prepare the data for the next controller in prepareForSegue
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
