@@ -78,14 +78,6 @@
 
 #pragma mark - Table view data source
 
-// The default is no section
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 0;
-}
-*/
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -151,9 +143,39 @@
 
 #pragma mark - Table view delegate
 
+#define RECENT_PHOTOS @"recent photos"
+#define PHOTO_ID @"id"
+#define MAX_RECENTS 20
+
+// Return true if the photo already exist (a duplicate)
+- (BOOL)checkIfPhoto:(NSDictionary *)photoInfo
+	  existInRecents:(NSArray *)photoArray
+{
+	NSString *photoID = [photoInfo objectForKey:PHOTO_ID];
+	for (NSDictionary *dictionary in photoArray) {
+		if ([[dictionary objectForKey:PHOTO_ID] isEqualToString:photoID]) {
+			return YES;
+		}
+	}
+	return NO;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	
+	// Get the dictionary
+	NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSMutableArray *tmp = [[defaults objectForKey:RECENT_PHOTOS] mutableCopy];
+	if (![self checkIfPhoto:photoInfo existInRecents:tmp]) {
+		if ([tmp count] == MAX_RECENTS) {
+			[tmp removeObjectAtIndex:0];
+		}
+		[tmp addObject:photoInfo];
+	}
+	[defaults setObject:tmp forKey:RECENT_PHOTOS];
+	[defaults synchronize];gi
 }
 
 @end
