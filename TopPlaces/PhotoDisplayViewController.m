@@ -8,12 +8,12 @@
 
 #import "PhotoDisplayViewController.h"
 
-@interface PhotoViewController () <UIScrollViewDelegate>
+@interface PhotoDisplayViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet  UIScrollView *imageScrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end
 
-@implementation PhotoViewController
+@implementation PhotoDisplayViewController
 
 @synthesize photoURL = _photoURL;
 @synthesize imageScrollView;

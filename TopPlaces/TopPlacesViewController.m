@@ -7,8 +7,9 @@
 //
 
 #import "TopPlacesViewController.h"
-#import "FlickrFetcher.h"
 #import "LocalPhotosViewController.h"
+#import "Constants.h"
+#import "FlickrFetcher.h"
 
 @interface TopPlacesViewController ()
 
@@ -18,8 +19,6 @@
 
 @synthesize topPlaces = _topPlaces;
 
-
-#define PLACE_NAME_KEY @"_content"
 
 /*
  Helper method to return the places in alphabetical order in an array

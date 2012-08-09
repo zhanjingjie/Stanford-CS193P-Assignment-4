@@ -10,7 +10,7 @@
 #import "GenericTableViewController.h"
 #import "PhotoDisplayViewController.h"
 #import "FlickrFetcher.h"
-#import "Contants.h"
+#import "Constants.h"
 
 
 
@@ -48,12 +48,12 @@
 		NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
 		
 		// Set the destination view controller's title as the image's title
-		((PhotoViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+		((PhotoDisplayViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 		
 		// Pass the URL to the destination view controller
 		// The destination view controller should be a generic image displaying controller, display the image from the URL
 		NSURL *photoURL = [FlickrFetcher urlForPhoto:photoInfo format:FlickrPhotoFormatLarge];
-		((PhotoViewController *)segue.destinationViewController).photoURL = photoURL;
+		((PhotoDisplayViewController *)segue.destinationViewController).photoURL = photoURL;
 	}
 }
 

@@ -7,8 +7,9 @@
 //
 
 #import "LocalPhotosViewController.h"
+#import "PhotoDisplayViewController.h"
+#import "Constants.h"
 #import "FlickrFetcher.h"
-#import "PhotoViewController.h"
 
 @interface LocalPhotosViewController ()
 @property (nonatomic, strong) NSArray *allPhotos;
@@ -19,7 +20,6 @@
 @synthesize thePlace = _thePlace;
 @synthesize allPhotos = _allPhotos;
 
-#define MAX_PHOTO_NUMBER 50
 
 
 
@@ -69,12 +69,12 @@
 		NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
 		
 		// Set the destination view controller's title as the image's title
-		((PhotoViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+		((PhotoDisplayViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 
 		// Pass the URL to the destination view controller
 		// The destination view controller should be a generic image displaying controller, display the image from the URL
 		NSURL *photoURL = [FlickrFetcher urlForPhoto:photoInfo format:FlickrPhotoFormatLarge];
-		((PhotoViewController *)segue.destinationViewController).photoURL = photoURL;
+		((PhotoDisplayViewController *)segue.destinationViewController).photoURL = photoURL;
 	}
 }
 
@@ -85,10 +85,6 @@
 {
 	return [self.allPhotos count];
 }
-
-#define PHOTO_TITLE @"title"
-#define THUMBNAIL_WIDTH 50
-#define THUMBNAIL_HEIGHT 50
 
 
 - (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
@@ -144,10 +140,6 @@
 
 
 #pragma mark - Table view delegate
-
-#define RECENT_PHOTOS @"recent photos"
-#define PHOTO_ID @"id"
-#define MAX_RECENTS 20
 
 // Tested
 // Return true if the photo already exist (a duplicate)

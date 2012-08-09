@@ -20,7 +20,7 @@
 		18E351CE15CAFB940083228A /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E351CD15CAFB940083228A /* FlickrFetcher.m */; };
 		18E351D115CAFFBB0083228A /* TopPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E351D015CAFFBB0083228A /* TopPlacesViewController.m */; };
 		18E351E815CB7DA40083228A /* LocalPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E351E715CB7DA40083228A /* LocalPhotosViewController.m */; };
-		18EABE5515D44CB1006370A4 /* Contants.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EABE5415D44CB1006370A4 /* Contants.m */; };
+		18EABE5515D44CB1006370A4 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EABE5415D44CB1006370A4 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +47,8 @@
 		18E351D015CAFFBB0083228A /* TopPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlacesViewController.m; sourceTree = "<group>"; };
 		18E351E615CB7DA40083228A /* LocalPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPhotosViewController.h; sourceTree = "<group>"; };
 		18E351E715CB7DA40083228A /* LocalPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPhotosViewController.m; sourceTree = "<group>"; };
-		18EABE5315D44CB1006370A4 /* Contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contants.h; sourceTree = "<group>"; };
-		18EABE5415D44CB1006370A4 /* Contants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contants.m; sourceTree = "<group>"; };
+		18EABE5315D44CB1006370A4 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		18EABE5415D44CB1006370A4 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +103,8 @@
 				18B9440E15CCA726001878FA /* GenericTableViewController.m */,
 				18B9440715CC959F001878FA /* PhotoDisplayViewController.h */,
 				18B9440815CC959F001878FA /* PhotoDisplayViewController.m */,
-				18EABE5315D44CB1006370A4 /* Contants.h */,
-				18EABE5415D44CB1006370A4 /* Contants.m */,
+				18EABE5315D44CB1006370A4 /* Constants.h */,
+				18EABE5415D44CB1006370A4 /* Constants.m */,
 				18E351BD15CAF66B0083228A /* MainStoryboard_iPhone.storyboard */,
 				18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */,
 				18E351B215CAF66B0083228A /* Supporting Files */,
@@ -200,7 +200,7 @@
 				18E351E815CB7DA40083228A /* LocalPhotosViewController.m in Sources */,
 				18B9440915CC959F001878FA /* PhotoDisplayViewController.m in Sources */,
 				18B9440F15CCA726001878FA /* GenericTableViewController.m in Sources */,
-				18EABE5515D44CB1006370A4 /* Contants.m in Sources */,
+				18EABE5515D44CB1006370A4 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
