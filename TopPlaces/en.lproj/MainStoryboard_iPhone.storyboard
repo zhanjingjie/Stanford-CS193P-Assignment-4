@@ -40,7 +40,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="TAd-D9-nkn" kind="push" identifier="Show Photo Descriptions" id="XqG-Gx-Xkb"/>
+                                    <segue destination="TAd-D9-nkn" kind="push" id="Wrt-pH-Ulk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -109,11 +109,11 @@
             </objects>
             <point key="canvasLocation" x="1689" y="-776"/>
         </scene>
-        <!--Photo View Controller-->
+        <!--Photo Display View Controller-->
         <scene sceneID="xeg-AP-FBR">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPm-Y7-HBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="A10-bq-meB" customClass="PhotoViewController" sceneMemberID="viewController">
+                <viewController id="A10-bq-meB" customClass="PhotoDisplayViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="MMN-Ie-mFt">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -140,11 +140,11 @@
             </objects>
             <point key="canvasLocation" x="2239" y="-382"/>
         </scene>
-        <!--Recent Places View Controller - Recent-->
+        <!--Generic Table View Controller - Recent-->
         <scene sceneID="22k-TI-g4q">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbp-yl-47I" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="xga-e3-VhM" customClass="RecentPlacesViewController" sceneMemberID="viewController">
+                <tableViewController id="xga-e3-VhM" customClass="GenericTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6BU-WP-6se">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,26 +247,12 @@
             <point key="canvasLocation" x="696" y="-169"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="GenericTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericTableViewController.h"/>
-        </class>
-        <class className="LocalPhotosViewController" superclassName="GenericTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocalPhotosViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh:"/>
-            </relationships>
-        </class>
-        <class className="TopPlacesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uE9-qo-oNg"/>
+        <segue reference="yFt-h9-Mf1"/>
     </inferredMetricsTieBreakers>
 </document>
