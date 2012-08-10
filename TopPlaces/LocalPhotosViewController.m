@@ -64,7 +64,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if ([segue.identifier isEqualToString:@"Show One Photo"]) {
+	if ([segue.identifier isEqualToString:@"Show Photo"]) {
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 		NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
 		

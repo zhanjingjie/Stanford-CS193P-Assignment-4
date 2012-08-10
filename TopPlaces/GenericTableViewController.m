@@ -23,25 +23,19 @@
 
 @synthesize objects = _objects;
 
-// Reload the table when the objects are changed
-- (void)setObjects:(NSArray *)objects
-{
-	if (_objects != objects) {
-		self.objects = objects;
-		if (self.tableView.window) [self.tableView reloadData];
-	}
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:NO];
 	NSArray *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:RECENT_PHOTOS];
-	self.objects = tmp;
+	if (_objects != tmp) {
+		self.objects = tmp;
+		if (self.tableView.window) [self.tableView reloadData];
+	}
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if ([segue.identifier isEqualToString:@"Show One Photo"]) {
+	if ([segue.identifier isEqualToString:@"Show Photo"]) {
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 		NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
 		

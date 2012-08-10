@@ -40,7 +40,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="TAd-D9-nkn" kind="push" id="Wrt-pH-Ulk"/>
+                                    <segue destination="TAd-D9-nkn" kind="push" identifier="Show Photo Descriptions" id="Wrt-pH-Ulk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -89,7 +89,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="A10-bq-meB" kind="push" identifier="Show One Photo" id="yFt-h9-Mf1"/>
+                                    <segue destination="A10-bq-meB" kind="push" identifier="Show Photo" id="yFt-h9-Mf1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -175,7 +175,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="A10-bq-meB" kind="push" identifier="Show One Photo" id="uE9-qo-oNg"/>
+                                    <segue destination="A10-bq-meB" kind="push" identifier="Show Photo" id="uE9-qo-oNg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -247,6 +247,24 @@
             <point key="canvasLocation" x="696" y="-169"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="GenericTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericTableViewController.h"/>
+        </class>
+        <class className="LocalPhotosViewController" superclassName="GenericTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocalPhotosViewController.h"/>
+        </class>
+        <class className="PhotoDisplayViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoDisplayViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="TopPlacesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
