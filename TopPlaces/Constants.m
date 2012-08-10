@@ -15,7 +15,6 @@ NSString *const PHOTO_TITLE = @"title";
 NSString *const PHOTO_ID = @"id";
 NSString *const PLACE_NAME_KEY = @"_content";
 
-
 int const MAX_PHOTO_NUMBER = 50;
 int const THUMBNAIL_WIDTH = 50;
 int const THUMBNAIL_HEIGHT = 50;

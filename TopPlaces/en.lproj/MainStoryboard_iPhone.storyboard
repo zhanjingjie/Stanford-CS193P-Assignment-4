@@ -150,7 +150,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Recent Photos Pool" textLabel="q5R-7a-eLi" detailTextLabel="jwQ-iN-GGg" style="IBUITableViewCellStyleSubtitle" id="71Y-22-Xao">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Reusable Pool" textLabel="q5R-7a-eLi" detailTextLabel="jwQ-iN-GGg" style="IBUITableViewCellStyleSubtitle" id="71Y-22-Xao">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -248,21 +248,14 @@
         </scene>
     </scenes>
     <classes>
-        <class className="LocalPhotosViewController" superclassName="UITableViewController">
+        <class className="GenericTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericTableViewController.h"/>
+        </class>
+        <class className="LocalPhotosViewController" superclassName="GenericTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LocalPhotosViewController.h"/>
             <relationships>
                 <relationship kind="action" name="refresh:"/>
             </relationships>
-        </class>
-        <class className="PhotoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="RecentPlacesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentPlacesViewController.h"/>
         </class>
         <class className="TopPlacesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>

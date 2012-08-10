@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericTableViewController.h"
 
-@interface LocalPhotosViewController : UITableViewController
+@interface LocalPhotosViewController : GenericTableViewController
+// Should also make this an array of dictionary
 @property (nonatomic, strong) NSDictionary *thePlace;
 @end

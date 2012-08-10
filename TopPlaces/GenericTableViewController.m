@@ -1,6 +1,6 @@
 //
 //  RecentPlacesViewController.m
-//  This class will be the parent of all similar classes
+//  This class will be the parent of all other similar classes.
 //  TopPlaces
 //
 //  Created by Zhan Jingjie on 8/3/12.
@@ -23,22 +23,20 @@
 
 @synthesize objects = _objects;
 
-
-- (void)viewDidLoad
+// Reload the table when the objects are changed
+- (void)setObjects:(NSArray *)objects
 {
-    [super viewDidLoad];
+	if (_objects != objects) {
+		self.objects = objects;
+		if (self.tableView.window) [self.tableView reloadData];
+	}
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:NO];
 	NSArray *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:RECENT_PHOTOS];
-	if (_objects != tmp) {
-		self.objects = tmp;
-		// Maybe later can only reload or insert delete part of the date instead of reload all
-		if (self.tableView.window) [self.tableView reloadData];
-	}
+	self.objects = tmp;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -49,15 +47,10 @@
 		
 		// Set the destination view controller's title as the image's title
 		((PhotoDisplayViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-		
-		// Pass the URL to the destination view controller
-		// The destination view controller should be a generic image displaying controller, display the image from the URL
 		NSURL *photoURL = [FlickrFetcher urlForPhoto:photoInfo format:FlickrPhotoFormatLarge];
 		((PhotoDisplayViewController *)segue.destinationViewController).photoURL = photoURL;
 	}
 }
-
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -75,21 +68,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Recent Photos Pool";
+    static NSString *CellIdentifier = @"Reusable Pool";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 	
-    // Configure the cell...
-	NSDictionary *photoDescription = [self.objects objectAtIndex:indexPath.row];
+	// This is a dictionary containing photo info, same for LocalPhotosViewController
+	NSDictionary *objectDescription = [self.objects objectAtIndex:indexPath.row];
 	
 	// Get the content for the cell's title and subtitle
-	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	NSString *description = [[photoDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString *title = [[objectDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString *description = [[objectDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
 	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
 	cell.detailTextLabel.text = description;
 
-    
     return cell;
 }
 

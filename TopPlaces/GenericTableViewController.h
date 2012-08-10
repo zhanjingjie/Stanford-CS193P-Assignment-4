@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GenericTableViewController : UITableViewController
-@property (nonatomic, strong) NSArray *objects;
+// Model is an array of photos info (dictionary), subclass can also have an array of places
+@property (nonatomic, strong) NSArray *objects; // The model
 @end
