@@ -10,6 +10,5 @@
 #import "GenericTableViewController.h"
 
 @interface LocalPhotosViewController : GenericTableViewController
-// Should also make this an array of dictionary
-@property (nonatomic, strong) NSDictionary *thePlace;
+@property (nonatomic, strong) NSDictionary *place; // the model, a flickr photo dictionary
 @end

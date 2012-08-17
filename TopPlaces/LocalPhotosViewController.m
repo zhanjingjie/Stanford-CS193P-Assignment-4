@@ -12,17 +12,16 @@
 #import "FlickrFetcher.h"
 
 @interface LocalPhotosViewController ()
-@property (nonatomic, strong) NSArray *allPhotos;
+
 @end
 
 @implementation LocalPhotosViewController
 
-@synthesize thePlace = _thePlace;
-@synthesize allPhotos = _allPhotos;
+@synthesize place = _place;
 
 
 
-
+/*
 - (IBAction)refresh:(id)sender {
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	[spinner startAnimating];
@@ -39,6 +38,7 @@
 	dispatch_release(downloadQueue);
 	NSLog(@"Refresh the top photos list.");
 }
+*/
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -49,24 +49,24 @@
     return self;
 }
 
-- (void)viewDidLoad
+// Need to override the parent variable objects
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super viewDidLoad];
-	self.allPhotos = [FlickrFetcher photosInPlace:self.thePlace maxResults:MAX_PHOTO_NUMBER];
+	[super viewWillAppear:NO];
+	self.objects = [FlickrFetcher photosInPlace:self.place maxResults:MAX_PHOTO_NUMBER];
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
 }
 
-/*
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"Show Photo"]) {
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-		NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
+		NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
 		
 		// Set the destination view controller's title as the image's title
 		((PhotoDisplayViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
@@ -77,17 +77,19 @@
 		((PhotoDisplayViewController *)segue.destinationViewController).photoURL = photoURL;
 	}
 }
-*/
+
+
 #pragma mark - Table view data source
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.allPhotos count];
+	return [self.objects count];
 }
 
 
-
+// Somehow this method use the model in the parent class
+// Or maybe the prepareForSegue in the TopPlacesViewController set the Local's model as its parent
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -96,7 +98,7 @@
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 	
     // Configure the cell...
-	NSDictionary *photoDescription = [self.allPhotos objectAtIndex:indexPath.row];
+	NSDictionary *photoDescription = [self.objects objectAtIndex:indexPath.row];
 	
 	// Get the content for the cell's title and subtitle
 	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -149,7 +151,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	
 	// Get the dictionary
-	NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
+	NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	NSMutableArray *tmp = [defaults objectForKey:RECENT_PHOTOS] ? [[defaults objectForKey:RECENT_PHOTOS] mutableCopy] : [NSMutableArray array];

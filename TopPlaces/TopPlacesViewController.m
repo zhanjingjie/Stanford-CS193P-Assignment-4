@@ -47,7 +47,8 @@
 		
 		// Set the destination view controller's title and the allPhotos property.
 		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
-		((LocalPhotosViewController *) segue.destinationViewController).thePlace = place;
+		
+		((LocalPhotosViewController *) segue.destinationViewController).place = place;
 	}
 }
 
