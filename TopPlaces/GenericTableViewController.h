@@ -1,5 +1,5 @@
 //
-//  RecentPlacesViewController.h
+//  GenericTableViewController.h
 //  TopPlaces
 //
 //  Created by Zhan Jingjie on 8/3/12.

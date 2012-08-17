@@ -51,7 +51,7 @@
 
 - (void)viewDidLoad
 {
-	//[super viewDidLoad];
+	[super viewDidLoad];
 	self.allPhotos = [FlickrFetcher photosInPlace:self.thePlace maxResults:MAX_PHOTO_NUMBER];
 }
 
@@ -87,13 +87,6 @@
 }
 
 
-- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return destImage;
-}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,7 +101,6 @@
 	// Get the content for the cell's title and subtitle
 	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	NSString *description = [[photoDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	//NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatThumbnail];
 	
 	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
 	cell.detailTextLabel.text = description;
@@ -116,12 +108,10 @@
 	// Now the code is lagging, when loaded and scrolled
 	// See Apple LazyTableImage sample project for more info
 	/*
-	UIImage *raw = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
-	cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
+	NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatSquare];
+	cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
 	*/
 	
-	// The behavior is strange: images only show after you scroll the first time, but no lagging now
-	// Will worry about performance later
 	/*
 	dispatch_queue_t downloadImages = dispatch_queue_create("download images", NULL);
 	dispatch_async(downloadImages, ^{
@@ -141,7 +131,6 @@
 
 #pragma mark - Table view delegate
 
-// Tested
 // Return true if the photo already exist (a duplicate)
 - (BOOL)checkIfPhoto:(NSDictionary *)photoInfo
 	  existInRecents:(NSArray *)photoArray
@@ -155,7 +144,6 @@
 	return NO;
 }
 
-// Tested
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -164,12 +152,7 @@
 	NSDictionary *photoInfo = [self.allPhotos objectAtIndex:indexPath.row];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
-	NSMutableArray *tmp;
-	if (![defaults objectForKey:RECENT_PHOTOS]) {
-		tmp = [NSMutableArray array];
-	} else {
-		tmp = [[defaults objectForKey:RECENT_PHOTOS] mutableCopy];
-	}
+	NSMutableArray *tmp = [defaults objectForKey:RECENT_PHOTOS] ? [[defaults objectForKey:RECENT_PHOTOS] mutableCopy] : [NSMutableArray array];
 	
 	if (![self checkIfPhoto:photoInfo existInRecents:tmp]) {
 		if ([tmp count] == MAX_RECENTS) {

@@ -1,5 +1,5 @@
 //
-//  RecentPlacesViewController.m
+//  GenericTableViewController.m
 //  This class will be the parent of all other similar classes.
 //  TopPlaces
 //
