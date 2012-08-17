@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericTableViewController.h"
 
-@interface TopPlacesViewController : UITableViewController
-@property (nonatomic, strong) NSArray *topPlaces;
+@interface TopPlacesViewController : GenericTableViewController
 @end

@@ -11,14 +11,7 @@
 #import "Constants.h"
 #import "FlickrFetcher.h"
 
-@interface TopPlacesViewController ()
-
-@end
-
 @implementation TopPlacesViewController
-
-@synthesize topPlaces = _topPlaces;
-
 
 /*
  Helper method to return the places in alphabetical order in an array
@@ -37,17 +30,13 @@
 
 
 
-// The better part of using this method is: you can customize the new table view controller in the interface builder instead of building from code.
-// Not working well when I put the photosInPlace in a separate thread
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"Show Photo Descriptions"]) {
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-		NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
+		NSDictionary *place = [self.objects objectAtIndex:indexPath.row];
 		
-		// Set the destination view controller's title and the allPhotos property.
 		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
-		
 		((LocalPhotosViewController *) segue.destinationViewController).place = place;
 	}
 }
@@ -59,28 +48,21 @@
 
 #pragma mark - View Life Cycle
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Show those top places when load
-	self.topPlaces = [self loadPlacesInOrder];
+	self.objects = [self loadPlacesInOrder];
 }
 
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)viewWillAppear:(BOOL)animated
 {
-    return YES;
+	NSArray *tmp = self.objects;
+	[super viewWillAppear:animated];
+	self.objects = tmp;
 }
+
 
 
 
@@ -94,21 +76,15 @@
 }
 */
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return [self.topPlaces count];
-}
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Top Places Pool";
+    static NSString *CellIdentifier = @"Reusable Pool";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 	
     // Configure the cell...
-	NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
+	NSDictionary *place = [self.objects objectAtIndex:indexPath.row];
 	NSString *placeName = [place objectForKey:PLACE_NAME_KEY];
 	NSArray *list = [placeName componentsSeparatedByString:@", "];
 	
@@ -120,15 +96,6 @@
 	}
     
     return cell;
-}
-
-
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
