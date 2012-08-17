@@ -73,10 +73,9 @@
 	
 	// Now the code is lagging, when loaded and scrolled
 	// See Apple LazyTableImage sample project for more info
-	/*
-	 NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatSquare];
-	 cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
-	 */
+	NSURL *photoURL = [FlickrFetcher urlForPhoto:objectDescription format:FlickrPhotoFormatSquare];
+	cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
+	
 	
 	/*
 	 dispatch_queue_t downloadImages = dispatch_queue_create("download images", NULL);
