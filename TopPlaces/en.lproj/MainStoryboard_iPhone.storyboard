@@ -98,13 +98,7 @@
                             <outlet property="delegate" destination="TAd-D9-nkn" id="9eZ-oA-hl5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="VwM-ij-5ME">
-                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="nFg-G8-Im2">
-                            <connections>
-                                <action selector="refresh:" destination="TAd-D9-nkn" id="4jm-7O-MHy"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="VwM-ij-5ME"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1689" y="-776"/>

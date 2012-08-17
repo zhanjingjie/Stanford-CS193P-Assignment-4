@@ -11,43 +11,11 @@
 #import "Constants.h"
 #import "FlickrFetcher.h"
 
-@interface LocalPhotosViewController ()
-
-@end
 
 @implementation LocalPhotosViewController
 
 @synthesize place = _place;
 
-
-
-/*
-- (IBAction)refresh:(id)sender {
-	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[spinner startAnimating];
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
-	
-	dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
-	dispatch_async(downloadQueue, ^{
-		NSArray *tmp = [FlickrFetcher photosInPlace:self.thePlace maxResults:MAX_PHOTO_NUMBER];
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.navigationItem.rightBarButtonItem = sender;
-			self.allPhotos = tmp;
-		});
-	});
-	dispatch_release(downloadQueue);
-	NSLog(@"Refresh the top photos list.");
-}
-*/
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 // Need to override the parent variable objects
 - (void)viewWillAppear:(BOOL)animated
@@ -56,10 +24,6 @@
 	self.objects = [FlickrFetcher photosInPlace:self.place maxResults:MAX_PHOTO_NUMBER];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
