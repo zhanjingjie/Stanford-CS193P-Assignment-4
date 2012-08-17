@@ -16,81 +16,18 @@
 
 @synthesize place = _place;
 
-
-// Need to override the parent variable objects
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-	[super viewWillAppear:NO];
+	[super viewDidLoad];
 	self.objects = [FlickrFetcher photosInPlace:self.place maxResults:MAX_PHOTO_NUMBER];
 }
 
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+// The parent method will change the variable, so has to save it back
+- (void)viewWillAppear:(BOOL)animated
 {
-	if ([segue.identifier isEqualToString:@"Show Photo"]) {
-		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-		NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
-		
-		// Set the destination view controller's title as the image's title
-		((PhotoDisplayViewController *)segue.destinationViewController).title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-
-		// Pass the URL to the destination view controller
-		// The destination view controller should be a generic image displaying controller, display the image from the URL
-		NSURL *photoURL = [FlickrFetcher urlForPhoto:photoInfo format:FlickrPhotoFormatLarge];
-		((PhotoDisplayViewController *)segue.destinationViewController).photoURL = photoURL;
-	}
-}
-
-
-#pragma mark - Table view data source
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return [self.objects count];
-}
-
-
-// Somehow this method use the model in the parent class
-// Or maybe the prepareForSegue in the TopPlacesViewController set the Local's model as its parent
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"All Photos Pool";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-	
-    // Configure the cell...
-	NSDictionary *photoDescription = [self.objects objectAtIndex:indexPath.row];
-	
-	// Get the content for the cell's title and subtitle
-	NSString *title = [[photoDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	NSString *description = [[photoDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	
-	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
-	cell.detailTextLabel.text = description;
-	
-	// Now the code is lagging, when loaded and scrolled
-	// See Apple LazyTableImage sample project for more info
-	/*
-	NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatSquare];
-	cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
-	*/
-	
-	/*
-	dispatch_queue_t downloadImages = dispatch_queue_create("download images", NULL);
-	dispatch_async(downloadImages, ^{
-		NSData *data = [NSData dataWithContentsOfURL:photoURL];
-		dispatch_async(dispatch_get_main_queue(), ^{
-			UIImage *raw = [UIImage imageWithData:data];
-			cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
-		});
-	});
-	dispatch_release(downloadImages);
-	 */
-	
-	return cell;
+	NSArray *tmp = self.objects;
+	[super viewWillAppear:animated];
+	self.objects = tmp;
 }
 
 

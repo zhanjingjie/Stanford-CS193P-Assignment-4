@@ -13,25 +13,20 @@
 #import "Constants.h"
 
 
-
-@interface GenericTableViewController ()
-@end
-
-
-
 @implementation GenericTableViewController
 
 @synthesize objects = _objects;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	[super viewWillAppear:NO];
+	[super viewWillAppear:animated];
 	NSArray *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:RECENT_PHOTOS];
 	if (_objects != tmp) {
 		self.objects = tmp;
 		if (self.tableView.window) [self.tableView reloadData];
 	}
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -75,7 +70,26 @@
 	
 	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");
 	cell.detailTextLabel.text = description;
-
+	
+	// Now the code is lagging, when loaded and scrolled
+	// See Apple LazyTableImage sample project for more info
+	/*
+	 NSURL *photoURL = [FlickrFetcher urlForPhoto:photoDescription format:FlickrPhotoFormatSquare];
+	 cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
+	 */
+	
+	/*
+	 dispatch_queue_t downloadImages = dispatch_queue_create("download images", NULL);
+	 dispatch_async(downloadImages, ^{
+	 NSData *data = [NSData dataWithContentsOfURL:photoURL];
+	 dispatch_async(dispatch_get_main_queue(), ^{
+	 UIImage *raw = [UIImage imageWithData:data];
+	 cell.imageView.image = [self imageWithImage:raw convertToSize:CGSizeMake(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)];
+	 });
+	 });
+	 dispatch_release(downloadImages);
+	 */
+	
     return cell;
 }
 
