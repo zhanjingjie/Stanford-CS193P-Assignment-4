@@ -10,7 +10,6 @@
 #import "GenericTableViewController.h"
 #import "PhotoDisplayViewController.h"
 #import "FlickrFetcher.h"
-#import "Constants.h"
 
 
 @implementation GenericTableViewController
@@ -20,7 +19,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	NSArray *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:RECENT_PHOTOS];
+	NSArray *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:FLICKR_RECENT_PHOTOS];
 	if (_objects != tmp) {
 		self.objects = tmp;
 		if (self.tableView.window) [self.tableView reloadData];
@@ -65,7 +64,7 @@
 	NSDictionary *objectDescription = [self.objects objectAtIndex:indexPath.row];
 	
 	// Get the content for the cell's title and subtitle
-	NSString *title = [[objectDescription objectForKey:PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString *title = [[objectDescription objectForKey:FLICKR_PHOTO_TITLE] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	NSString *description = [[objectDescription valueForKeyPath:@"description._content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
 	cell.textLabel.text = [title length] ? title : ([description length] ? description : @"Unknown");

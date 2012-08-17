@@ -14,6 +14,10 @@
 #define FLICKR_PHOTO_OWNER @"ownername"
 #define FLICKR_LATITUDE @"latitude"
 #define FLICKR_LONGITUDE @"longitude"
+#define FLICKR_RECENT_PHOTOS @"recent photos"
+extern int const MAX_PHOTO_NUMBER;
+extern int const MAX_RECENTS;
+
 
 typedef enum {
 	FlickrPhotoFormatSquare = 1,

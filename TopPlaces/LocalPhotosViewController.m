@@ -8,7 +8,6 @@
 
 #import "LocalPhotosViewController.h"
 #import "PhotoDisplayViewController.h"
-#import "Constants.h"
 #import "FlickrFetcher.h"
 
 
@@ -38,9 +37,9 @@
 - (BOOL)checkIfPhoto:(NSDictionary *)photoInfo
 	  existInRecents:(NSArray *)photoArray
 {
-	NSString *photoID = [photoInfo objectForKey:PHOTO_ID];
+	NSString *photoID = [photoInfo objectForKey:FLICKR_PHOTO_ID];
 	for (NSDictionary *dictionary in photoArray) {
-		if ([[dictionary objectForKey:PHOTO_ID] isEqualToString:photoID]) {
+		if ([[dictionary objectForKey:FLICKR_PHOTO_ID] isEqualToString:photoID]) {
 			return YES;
 		}
 	}
@@ -55,7 +54,7 @@
 	NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
-	NSMutableArray *tmp = [defaults objectForKey:RECENT_PHOTOS] ? [[defaults objectForKey:RECENT_PHOTOS] mutableCopy] : [NSMutableArray array];
+	NSMutableArray *tmp = [defaults objectForKey:FLICKR_RECENT_PHOTOS] ? [[defaults objectForKey:FLICKR_RECENT_PHOTOS] mutableCopy] : [NSMutableArray array];
 	
 	if (![self checkIfPhoto:photoInfo existInRecents:tmp]) {
 		if ([tmp count] == MAX_RECENTS) {
@@ -63,7 +62,7 @@
 		}
 		[tmp addObject:photoInfo];
 	}
-	[defaults setObject:tmp forKey:RECENT_PHOTOS];
+	[defaults setObject:tmp forKey:FLICKR_RECENT_PHOTOS];
 	[defaults synchronize];
 	
 }

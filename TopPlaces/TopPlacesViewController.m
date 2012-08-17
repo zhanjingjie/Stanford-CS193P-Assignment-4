@@ -8,7 +8,6 @@
 
 #import "TopPlacesViewController.h"
 #import "LocalPhotosViewController.h"
-#import "Constants.h"
 #import "FlickrFetcher.h"
 
 @implementation TopPlacesViewController
@@ -20,8 +19,8 @@
 {
 	NSArray *tmp = [FlickrFetcher topPlaces];
 	NSArray *sortedArray = [tmp sortedArrayUsingComparator: ^(id obj1, id obj2) {
-		NSString *city1 = [[[obj1 objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
-		NSString *city2 = [[[obj2 objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
+		NSString *city1 = [[[obj1 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
+		NSString *city2 = [[[obj2 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
 		return [city1 compare:city2];
 	}];
 	return sortedArray;
@@ -36,7 +35,7 @@
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 		NSDictionary *place = [self.objects objectAtIndex:indexPath.row];
 		
-		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:PLACE_NAME_KEY] componentsSeparatedByString:@", "] objectAtIndex:0];
+		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
 		((LocalPhotosViewController *) segue.destinationViewController).place = place;
 	}
 }
@@ -85,7 +84,7 @@
 	
     // Configure the cell...
 	NSDictionary *place = [self.objects objectAtIndex:indexPath.row];
-	NSString *placeName = [place objectForKey:PLACE_NAME_KEY];
+	NSString *placeName = [place objectForKey:FLICKR_PLACE_NAME];
 	NSArray *list = [placeName componentsSeparatedByString:@", "];
 	
 	cell.textLabel.text = [list objectAtIndex:0];

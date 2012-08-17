@@ -12,6 +12,9 @@
 
 @implementation FlickrFetcher
 
+int const MAX_PHOTO_NUMBER = 50;
+int const MAX_RECENTS = 20;
+
 + (NSDictionary *)executeFlickrFetch:(NSString *)query
 {
     query = [NSString stringWithFormat:@"%@&format=json&nojsoncallback=1&api_key=%@", query, FlickrAPIKey];
