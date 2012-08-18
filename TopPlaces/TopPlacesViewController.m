@@ -10,22 +10,72 @@
 #import "LocalPhotosViewController.h"
 #import "FlickrFetcher.h"
 
+
+@interface TopPlacesViewController()
+
+typedef enum {
+	SortPlacesByCountryName = 1,
+	SortPlacesByCityName = 2
+} SortingOptions;
+
+@end
+
+
+
 @implementation TopPlacesViewController
 
+
 /*
- Helper method to return the places in alphabetical order in an array
+ Sort the places in alphabetical order
  */
-- (NSArray *)loadPlacesInOrder
+- (NSArray *)SortArray: (NSArray *)tmp
+			   ByOrder: (SortingOptions)option
 {
-	NSArray *tmp = [FlickrFetcher topPlaces];
-	NSArray *sortedArray = [tmp sortedArrayUsingComparator: ^(id obj1, id obj2) {
-		NSString *city1 = [[[obj1 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
-		NSString *city2 = [[[obj2 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
-		return [city1 compare:city2];
-	}];
+	NSArray *sortedArray = [NSArray array];
+	
+	// Sort the one-dimensional array by option
+	switch (option) {
+		case SortPlacesByCountryName:
+			sortedArray = [tmp sortedArrayUsingComparator: ^(id obj1, id obj2) {
+				NSString *country1 = [[[obj1 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] lastObject];
+				NSString *country2 = [[[obj2 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] lastObject];
+				return [country1 compare:country2];
+			}];
+			break;
+		case SortPlacesByCityName:
+			sortedArray = [tmp sortedArrayUsingComparator: ^(id obj1, id obj2) {
+				NSString *city1 = [[[obj1 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
+				NSString *city2 = [[[obj2 objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
+				return [city1 compare:city2];
+			}];
+			break;
+		default:
+			break;
+	}
+	
 	return sortedArray;
 }
 
+// Output: a double array, sorted by country and by city
+- (NSArray *)loadByCountryOrder
+{
+	NSArray *tmp = [FlickrFetcher topPlaces];
+	NSArray *arraySortedByCountry = [self SortArray:tmp ByOrder:SortPlacesByCountryName];
+	
+
+	// This will be an array of array, each subarray is a country
+	NSMutableArray *sorted = [NSMutableArray array];
+	
+	for (int i = 0; i < [arraySortedByCountry count]; i++) {
+		NSMutableArray *oneCountry;
+		
+		
+		
+		if (!oneCountry) [sorted addObject:[self SortArray:oneCountry ByOrder:SortPlacesByCityName]];
+	}
+	
+	return sorted;
+}
 
 
 
@@ -51,7 +101,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.objects = [self loadPlacesInOrder];
+	self.objects = [self SortArray:[FlickrFetcher topPlaces] ByOrder:SortPlacesByCountryName];
 }
 
 
@@ -67,7 +117,7 @@
 
 #pragma mark - Table view data source
 
-// Make it no section first
+// Divides the list by contries, and the countries are in alphabetical order
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
