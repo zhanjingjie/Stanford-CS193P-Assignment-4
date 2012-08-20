@@ -62,16 +62,25 @@ typedef enum {
 	NSArray *tmp = [FlickrFetcher topPlaces];
 	NSArray *arraySortedByCountry = [self SortArray:tmp ByOrder:SortPlacesByCountryName];
 	
-
 	// This will be an array of array, each subarray is a country
 	NSMutableArray *sorted = [NSMutableArray array];
 	
-	for (int i = 0; i < [arraySortedByCountry count]; i++) {
-		NSMutableArray *oneCountry;
+	int i = 1;
+	int num = 1;
+	while (i < [arraySortedByCountry count]) {
+		NSString *country1 = [[[[arraySortedByCountry objectAtIndex:i] objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] lastObject];
+		NSString *country2 = [[[[arraySortedByCountry objectAtIndex:i-1] objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] lastObject];
+		if ([country1 isEqualToString:country2]) {
+			num++;
+			i++;
+			continue;
+		}
+		// let i-num is the starting point of the same dictionaries, and we have num number of same dics
+		NSArray *oneCountry = [arraySortedByCountry subarrayWithRange:NSMakeRange(i-num, num)];
+		[sorted addObject:oneCountry];
 		
-		
-		
-		if (!oneCountry) [sorted addObject:[self SortArray:oneCountry ByOrder:SortPlacesByCityName]];
+		num=1;
+		i++;
 	}
 	
 	return sorted;
