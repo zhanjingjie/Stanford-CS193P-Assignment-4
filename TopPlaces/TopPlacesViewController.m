@@ -77,7 +77,7 @@ typedef enum {
 		}
 		// let i-num is the starting point of the same dictionaries, and we have num number of same dics
 		NSArray *oneCountry = [arraySortedByCountry subarrayWithRange:NSMakeRange(i-num, num)];
-		[sorted addObject:oneCountry];
+		[sorted addObject:[self SortArray:oneCountry ByOrder:SortPlacesByCityName]];
 		
 		num=1;
 		i++;
@@ -111,6 +111,7 @@ typedef enum {
 {
     [super viewDidLoad];
 	self.objects = [self SortArray:[FlickrFetcher topPlaces] ByOrder:SortPlacesByCountryName];
+	NSLog(@"%@", [self loadByCountryOrder]);
 }
 
 
