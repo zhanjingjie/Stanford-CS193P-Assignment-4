@@ -114,12 +114,14 @@ typedef enum {
 	self.objects = [self loadByCountryOrder];
 }
 
-
+// It seems to be ok if I don't call super at this case
 - (void)viewWillAppear:(BOOL)animated
 {
+	/*
 	NSArray *tmp = self.objects;
 	[super viewWillAppear:animated];
 	self.objects = tmp;
+	 */
 }
 
 
@@ -137,6 +139,7 @@ typedef enum {
 {
 	return [[self.objects objectAtIndex:section] count];
 }
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

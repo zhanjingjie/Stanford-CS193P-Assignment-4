@@ -24,9 +24,11 @@
 // The parent method will change the variable, so has to save it back
 - (void)viewWillAppear:(BOOL)animated
 {
+	/*
 	NSArray *tmp = self.objects;
 	[super viewWillAppear:animated];
 	self.objects = tmp;
+	 */
 }
 
 
