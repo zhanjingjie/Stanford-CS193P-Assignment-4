@@ -92,7 +92,7 @@ typedef enum {
 {
 	if ([segue.identifier isEqualToString:@"Show Photo Descriptions"]) {
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-		NSDictionary *place = [self.objects objectAtIndex:indexPath.row];
+		NSDictionary *place = [[self.objects objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 		
 		((LocalPhotosViewController *)segue.destinationViewController).title = [[[place objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] objectAtIndex:0];
 		((LocalPhotosViewController *) segue.destinationViewController).place = place;
@@ -110,8 +110,8 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.objects = [self SortArray:[FlickrFetcher topPlaces] ByOrder:SortPlacesByCountryName];
-	NSLog(@"%@", [self loadByCountryOrder]);
+	//self.objects = [self SortArray:[FlickrFetcher topPlaces] ByOrder:SortPlacesByCountryName];
+	self.objects = [self loadByCountryOrder];
 }
 
 
@@ -128,12 +128,23 @@ typedef enum {
 #pragma mark - Table view data source
 
 // Divides the list by contries, and the countries are in alphabetical order
-/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return [self.objects count];
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [[self.objects objectAtIndex:section] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSDictionary *country = [[self.objects objectAtIndex:section] objectAtIndex:0];
+	NSString *countryName = [[[country objectForKey:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "] lastObject];
+	return countryName;
+}
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,7 +154,7 @@ typedef enum {
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 	
     // Configure the cell...
-	NSDictionary *place = [self.objects objectAtIndex:indexPath.row];
+	NSDictionary *place = [[self.objects objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 	NSString *placeName = [place objectForKey:FLICKR_PLACE_NAME];
 	NSArray *list = [placeName componentsSeparatedByString:@", "];
 	
