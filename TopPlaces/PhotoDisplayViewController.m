@@ -21,29 +21,6 @@
 
 
 
-// A helper method to set the contentSize when first appear on screen and when rotation occurs
-- (void)resetContentSize
-{
-	CGSize bounds = self.view.bounds.size;
-	CGSize imageSize = self.imageView.image.size;
-	CGSize fitSize;
-	
-	// eg. if widthRatio > heightRatio, then use the bounds.width as the width of the image and imageSize/widthRatio as the height
-	CGFloat widthRatio = imageSize.width / bounds.width;
-	CGFloat heightRatio = imageSize.height / bounds.height;
-	
-	if (widthRatio >= heightRatio) {
-		fitSize.width = bounds.width;
-		fitSize.height = imageSize.height / widthRatio;
-	} else {
-		fitSize.width = imageSize.width / heightRatio;
-		fitSize.height = bounds.height;
-	}
-		
-	self.imageScrollView.contentSize = fitSize;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,11 +30,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:YES];
-	[self resetContentSize];
-}
 
 - (void)viewDidUnload
 {
@@ -71,12 +43,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
-}
-
-// Will handle the new contentSize after rotation
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-	[self resetContentSize];
 }
 
 
