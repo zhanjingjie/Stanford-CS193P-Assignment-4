@@ -90,7 +90,7 @@ typedef enum {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if ([segue.identifier isEqualToString:@"Show Photo Descriptions"]) {
+	if ([segue.identifier isEqualToString:@"Show All Photos"]) {
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 		NSDictionary *place = [[self.objects objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 		

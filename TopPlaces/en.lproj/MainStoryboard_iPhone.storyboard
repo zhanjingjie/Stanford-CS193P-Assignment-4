@@ -40,7 +40,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="TAd-D9-nkn" kind="push" identifier="Show Photo Descriptions" id="Wrt-pH-Ulk"/>
+                                    <segue destination="TAd-D9-nkn" kind="push" identifier="Show All Photos" id="Wrt-pH-Ulk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
