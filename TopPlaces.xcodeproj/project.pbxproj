@@ -27,6 +27,7 @@
 		18B9440815CC959F001878FA /* PhotoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDisplayViewController.m; sourceTree = "<group>"; };
 		18B9440D15CCA726001878FA /* GenericTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewController.h; sourceTree = "<group>"; };
 		18B9440E15CCA726001878FA /* GenericTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTableViewController.m; sourceTree = "<group>"; };
+		18DC622F15E42C0F009599DD /* splitViewBarButtonPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = splitViewBarButtonPresenter.h; sourceTree = "<group>"; };
 		18E351A715CAF66B0083228A /* TopPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E351AB15CAF66B0083228A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18E351AD15CAF66B0083228A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,6 +101,7 @@
 				18B9440E15CCA726001878FA /* GenericTableViewController.m */,
 				18B9440715CC959F001878FA /* PhotoDisplayViewController.h */,
 				18B9440815CC959F001878FA /* PhotoDisplayViewController.m */,
+				18DC622F15E42C0F009599DD /* splitViewBarButtonPresenter.h */,
 				18E351BD15CAF66B0083228A /* MainStoryboard_iPhone.storyboard */,
 				18E351C015CAF66B0083228A /* MainStoryboard_iPad.storyboard */,
 				18E351B215CAF66B0083228A /* Supporting Files */,

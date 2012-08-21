@@ -16,10 +16,17 @@
 @implementation PhotoDisplayViewController
 
 @synthesize photoURL = _photoURL;
-@synthesize imageScrollView;
-@synthesize imageView;
+@synthesize imageScrollView = _imageScrollView;
+@synthesize imageView = _imageView;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+// Can get a UIToolBar from self.navigationController.toolbar
 
-
+// Set myself as the delegat of the splitViewController
+- (void)awakeFromNib
+{
+	[super awakeFromNib];
+	self.splitViewController.delegate = self;
+}
 
 - (void)viewDidLoad
 {
@@ -29,16 +36,12 @@
 	self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.photoURL]];
 }
 
-
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
 	[self setImageScrollView:nil];
 	[self setImageView:nil];
 }
-
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
