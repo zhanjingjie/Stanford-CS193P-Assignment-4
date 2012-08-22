@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" title="Recents" id="s9N-hQ-PrF"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1540" y="-488"/>
+            <point key="canvasLocation" x="-388" y="-504"/>
         </scene>
         <!--Photo Display View Controller-->
         <scene sceneID="YBi-W5-QiW">
@@ -81,7 +81,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1424" y="550"/>
+            <point key="canvasLocation" x="96" y="550"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="X6r-ur-bK8">
@@ -95,7 +95,7 @@
                     </connections>
                 </splitViewController>
             </objects>
-            <point key="canvasLocation" x="-532" y="80"/>
+            <point key="canvasLocation" x="-2460" y="64"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HTY-kR-36S">
@@ -113,7 +113,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="450" y="550"/>
+            <point key="canvasLocation" x="-878" y="550"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bcz-DJ-Pfu">
@@ -132,7 +132,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="474" y="-837"/>
+            <point key="canvasLocation" x="-1454" y="-853"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uhC-KX-zS4">
@@ -151,7 +151,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="1023" y="-1475"/>
+            <point key="canvasLocation" x="-905" y="-1491"/>
         </scene>
         <!--Top Places View Controller - Top Places-->
         <scene sceneID="oUq-oG-bCn">
@@ -200,7 +200,7 @@
                     <navigationItem key="navigationItem" title="Top Places" id="5Fh-Jf-VbU"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1500" y="-1475"/>
+            <point key="canvasLocation" x="-428" y="-1491"/>
         </scene>
         <!--Local Photos View Controller-->
         <scene sceneID="4WV-0X-v7E">
@@ -246,7 +246,7 @@
                     <navigationItem key="navigationItem" id="Jdu-Yl-KiF"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1950" y="-1475"/>
+            <point key="canvasLocation" x="22" y="-1491"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Icc-Ra-18h">
@@ -262,7 +262,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="1039" y="-488"/>
+            <point key="canvasLocation" x="-889" y="-504"/>
         </scene>
     </scenes>
     <classes>

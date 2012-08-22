@@ -21,6 +21,16 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 // Can get a UIToolBar from self.navigationController.toolbar
 
+
+- (void)setPhotoURL:(NSURL *)photoURL
+{
+	if (_photoURL != photoURL) {
+		_photoURL = photoURL;
+		self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
+	}
+}
+
+
 // Set myself as the delegat of the splitViewController
 - (void)awakeFromNib
 {

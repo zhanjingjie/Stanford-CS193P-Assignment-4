@@ -48,9 +48,34 @@
 	return NO;
 }
 
+
+- (id <splitViewBarButtonPresenter>)splitViewBarButtonPresenter
+{
+	// It seems the last object is the navigation controller
+	id detailVC = [self.splitViewController.viewControllers lastObject];
+	if ([detailVC isKindOfClass:[UINavigationController class]]) {
+		detailVC = [detailVC topViewController];
+	}
+	if (![detailVC conformsToProtocol:@protocol(splitViewBarButtonPresenter)]) {
+		detailVC = nil;
+	}
+	return detailVC;
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	if ([self splitViewBarButtonPresenter]) {
+		id detailVC = [self splitViewBarButtonPresenter];
+		if ([detailVC isKindOfClass:[PhotoDisplayViewController class]]) {
+			PhotoDisplayViewController *detailViewController = (PhotoDisplayViewController *)detailVC;
+			detailViewController.title = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+			NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
+			NSURL *photoURL = [FlickrFetcher urlForPhoto:photoInfo format:FlickrPhotoFormatLarge];
+			detailViewController.photoURL = photoURL;
+		}
+	}
 	
 	// Get the dictionary
 	NSDictionary *photoInfo = [self.objects objectAtIndex:indexPath.row];
