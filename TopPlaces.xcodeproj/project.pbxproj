@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186D5057160D14E20083FC16 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186D5056160D14E20083FC16 /* Default-568h@2x.png */; };
 		18B9440915CC959F001878FA /* PhotoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9440815CC959F001878FA /* PhotoDisplayViewController.m */; };
 		18B9440F15CCA726001878FA /* GenericTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9440E15CCA726001878FA /* GenericTableViewController.m */; };
 		18E351AC15CAF66B0083228A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E351AB15CAF66B0083228A /* UIKit.framework */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		186D5056160D14E20083FC16 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		18B9440715CC959F001878FA /* PhotoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDisplayViewController.h; sourceTree = "<group>"; };
 		18B9440815CC959F001878FA /* PhotoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDisplayViewController.m; sourceTree = "<group>"; };
 		18B9440D15CCA726001878FA /* GenericTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewController.h; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 		18E3519C15CAF66B0083228A = {
 			isa = PBXGroup;
 			children = (
+				186D5056160D14E20083FC16 /* Default-568h@2x.png */,
 				18E351B115CAF66B0083228A /* TopPlaces */,
 				18E351AA15CAF66B0083228A /* Frameworks */,
 				18E351A815CAF66B0083228A /* Products */,
@@ -180,6 +183,7 @@
 				18E351B615CAF66B0083228A /* InfoPlist.strings in Resources */,
 				18E351BF15CAF66B0083228A /* MainStoryboard_iPhone.storyboard in Resources */,
 				18E351C215CAF66B0083228A /* MainStoryboard_iPad.storyboard in Resources */,
+				186D5057160D14E20083FC16 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
